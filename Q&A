@@ -9,3 +9,11 @@ select avg(order_count) from (select date_trunc('hour',created_at) as date_by_ho
 On average, how long does an order take from being placed to being delivered?
 select avg(placed_delivered) from (select order_id,(delivered_at-created_at) placed_delivered from dbt_rijesh_r.stg_orders where created_at is not null and delivered_at is not null) as order_placed_delivered;
 3 days
+
+How many users have only made one purchase? Two purchases? Three+ purchases?
+select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=1) as users_1_purchase;
+25
+select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=2) as users_2_purchase;
+22
+select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=3) as users_3_purchase;
+32
