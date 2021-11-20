@@ -1,0 +1,7 @@
+How many users do we have?
+select count(1)  from dbt_rijesh_r.stg_users;
+130
+
+On average, how many orders do we receive per hour?
+select avg(order_count) from (select date_trunc('hour',created_at) as date_by_hour,count(order_id) as order_count from dbt_rijesh_r.stg_orders where created_at is not null group by date_trunc('hour',created_at)) as order_count_by_hour;
+8.125
