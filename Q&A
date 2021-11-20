@@ -5,3 +5,7 @@ select count(1)  from dbt_rijesh_r.stg_users;
 On average, how many orders do we receive per hour?
 select avg(order_count) from (select date_trunc('hour',created_at) as date_by_hour,count(order_id) as order_count from dbt_rijesh_r.stg_orders where created_at is not null group by date_trunc('hour',created_at)) as order_count_by_hour;
 8.125
+
+On average, how long does an order take from being placed to being delivered?
+select avg(placed_delivered) from (select order_id,(delivered_at-created_at) placed_delivered from dbt_rijesh_r.stg_orders where created_at is not null and delivered_at is not null) as order_placed_delivered;
+3 days
