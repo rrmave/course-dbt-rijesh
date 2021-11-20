@@ -17,3 +17,7 @@ select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg
 22
 select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)>=3) as users_3_or_more_purchases;
 81
+
+On average, how many unique sessions do we have per hour?
+select avg(session_count) from (select date_trunc('hour',created_at),count(session_id) session_count from dbt_rijesh_r.stg_events where created_at is not null group by date_trunc('hour',created_at)) as sessions_per_hour;
+7.27
