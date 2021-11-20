@@ -1,0 +1,83 @@
+
+version: 2
+
+models:
+  - name: my_first_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_users
+    description: "Staging table for users"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_addresses
+    description: "Staging table for addresses"
+    columns:
+      - name: address_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: events
+    description: "Staging table for Events"
+    columns:
+      - name: event_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: orders
+    description: "Staging table for orders"
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_order_items
+    description: "Staging table for order items"
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+  - name: stg_products
+    description: "Staging table for addresses"
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_promos
+    description: "Staging table for addresses"
+    columns:
+      - name: promo_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
