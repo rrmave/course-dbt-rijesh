@@ -11,9 +11,9 @@ select avg(placed_delivered) from (select order_id,(delivered_at-created_at) pla
 3 days
 
 How many users have only made one purchase? Two purchases? Three+ purchases?
-select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=1) as users_1_purchase;
+select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=1) as users_1_purchases;
 25
-select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=2) as users_2_purchase;
+select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=2) as users_2_purchases;
 22
-select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)=3) as users_3_purchase;
-32
+select count(user_id) from (select user_id,count(order_id) from dbt_rijesh_r.stg_orders group by user_id having count(order_id)>=3) as users_3_or_more_purchases;
+81
