@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: int_user_order_facts
+    description: " intermediate_table for combining user and order details."
+    columns:
+    - name: user_guid
+      description: "This is the unique user_id for the table"   
+      tests:
+        - unique
+        - not_null
+  - name: fct_total_orders_per_user
+    description: " Fact table for total orders per user."
+    columns:
+    - name: user_guid
+      description: "This is the unique user_id for the table"   
+      tests:
+        - unique
+        - not_null
+  

@@ -5,7 +5,7 @@ models:
   - name: stg_users
     description: "Staging table for users"
     columns:
-      - name: user_id
+      - name: user_guid
         description: "The primary key for this table"
         tests:
           - unique
@@ -20,7 +20,7 @@ models:
           - unique
           - not_null
 
-  - name: events
+  - name: stg_events
     description: "Staging table for Events"
     columns:
       - name: event_id
@@ -29,7 +29,7 @@ models:
           - unique
           - not_null
 
-  - name: orders
+  - name: stg_orders
     description: "Staging table for orders"
     columns:
       - name: order_id

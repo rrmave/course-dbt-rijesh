@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_type_of_events_per_user
+    description: " Intermediate table for type of Events per User"
+    
+  - name: fct_type_of_events_per_user
+    description: " Fact table for type of Events per User"
