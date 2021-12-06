@@ -1,5 +1,5 @@
 
-## Q1. What is our overall conversion rate?
+## Q1.1. What is our overall conversion rate?
 
 Conversion Rate is 36.10%
 
@@ -20,7 +20,7 @@ SELECT round(((checkout_sessions_count::NUMERIC)/(session_count::NUMERIC))*100,2
 from session_count
 ```
 
-## Q1. What is our conversion rate by product?
+## Q1.2. What is our conversion rate by product?
 
 ```
 {{
@@ -97,3 +97,33 @@ FROM session__count_checkout_by_product JOIN session__count_by_product USING (pr
 | Fiddle Leaf Fig     |                                 51.72 |
 | Snake Plant         |                                 48.48 |
 | String of pearls    |                                 60.98 |
+
+## Q2 Create a macro to simplify part of a model(s)
+
+Created 2 macros
+```
+{% macro grant(role) %}
+
+    {% set sql %}
+      GRANT USAGE ON SCHEMA {{ schema }} TO ROLE {{ role }};
+      GRANT SELECT ON {{ this }} TO ROLE {{ role }};
+    {% endset %}
+
+    {% set table = run_query(sql) %}
+
+{% endmacro %}
+```
+```
+{% set event_types = dbt_utils.get_query_results_as_dict(
+  "SELECT DISTINCT event_type FROM" ~ ref('stg_events')) %}
+```
+
+## Q3  granting permissions to our dbt models
+```
+
+  post-hook:
+    - "GRANT SELECT ON {{this}} TO reporting"
+
+on-run-end:
+  - "GRANT USAGE ON SCHEMA {{schema}} TO reporting"
+```
