@@ -5,7 +5,7 @@
 }}
 
 select
-      user_guid
+      user_guid,
       email,
         total_add_to_cart,
         total_checkout,
