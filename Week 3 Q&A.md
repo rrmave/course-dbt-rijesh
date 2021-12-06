@@ -127,3 +127,19 @@ Created 2 macros
 on-run-end:
   - "GRANT USAGE ON SCHEMA {{schema}} TO reporting"
 ```
+
+## Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project
+
+```
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 0.7.3
+  - package: calogica/dbt_expectations
+    version: 0.5.0
+  - package: dbt-labs/codegen
+    version: 0.4.1
+```
+```
+{% set event_types = dbt_utils.get_query_results_as_dict(
+  "SELECT DISTINCT event_type FROM" ~ ref('stg_events')) %}
+```
