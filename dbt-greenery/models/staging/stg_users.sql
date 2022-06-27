@@ -7,7 +7,7 @@
 SELECT 
     id as my_user_id,
     user_id as user_guid,
-    first_name,
+    first_name as firstname,
     last_name,
     email,
     phone_number,
